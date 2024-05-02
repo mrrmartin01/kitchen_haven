@@ -5,10 +5,10 @@
 {% block content %}
     <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
         <div class="col-span-1">
-            <form method="get" action="{% url 'item:items' %}">
-                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find a bike, a chair or a car...">
+            <form method="get" action="{% url 'item:items' %}" class="flex gap-2">
+                <input name="query" class="w-full py-1 px-0.5 border rounded-r-md" type="text" value="{{ query }}" placeholder="Find a bike, a chair or a car...">
                 
-                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+                <button class=" px-2 text-lg bg-blue-500 text-black rounded-md">Search</button>
             </form>
 
             <hr class="my-6">
