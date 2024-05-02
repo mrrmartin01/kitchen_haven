@@ -1,43 +1,45 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base.html' %} {% block title %} Welcome {% endblock %} {% block content %}
+<div
+  class="bg-cover bg-center h-screen text-white py-24 px-10 object-fill"
+  style="background-image: url('https://source.unsplash.com/1600x900/?kitchen')"
+>
+  <div class="w-full md:w-1/2 bg-black bg-opacity-20 p-5 rounded">
+    <p class="font-bold text-xl md:text-2xl mb-5">
+      Welcome to our Kitchen Comfort!
+    </p>
+    <h2 class="font-bold text-3xl md:text-5xl mb-10">
+      High Quality Utensils for Your Kitchen
+    </h2>
+    <p class="text-lg md:text-2xl">
+      Explore our collection of high quality utensils and improve your cooking
+      experience. High quality, durable, and perfect for every kitchen.
+    </p>
+    <button class="mt-10 py-2 px-4 bg-yellow-500 text-black rounded-full">
+      <a href="{% url 'item:items' %}">Shop Now</a>
+    </button>
+  </div>
+</div>
 
-{% block title %}Welcome{% endblock %}
+<div class="mt-6">
+  <h2 class="mb-12 text-3xl lg:text-4xl italic text-center font-serif font-bold">Newest Items</h2>
 
-{% block content %}
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Newest Items</h2>
-
-        <div class="grid grid-cols-3 gap-3">
-            {% for item in items %}
-                <div>
-                    <a href="{% url 'item:detail' item.id %}">
-                        <div>
-                            <img src="{{ item.image.url }}" class="rounded-t-xl">
-                        </div>
-
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ item.name }}</h2>
-                            <p class="text-gray-500">Price: {{ item.price }}</p>
-                        </div>
-                    </a>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    {% for item in items %}
+        <div class="flex flex-col">
+            <a href="{% url 'item:detail' item.id %}" class="h-full">
+                <div class="w-full h-64 overflow-hidden rounded-t-xl">
+                    <img src="{{ item.image.url }}" class="w-full h-full object-cover" />
                 </div>
-            {% endfor %}
-        </div>
-    </div>
 
-    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-        <h2 class="mb-12 text-2xl text-center">Categories</h2>
-
-        <div class="grid grid-cols-3 gap-3">
-            {% for category in categories %}
-                <div>
-                    <a href="#">
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ category.name }}</h2>
-                            <p class="text-gray-500">{{ category.items.count }} items </p>
-                        </div>
-                    </a>
+                <div class="p-6 bg-white rounded-b-xl">
+                    <h2 class="text-2xl">{{ item.name }}</h2>
+                    <p class="text-gray-500">Price: {{ item.price }}</p>
                 </div>
-            {% endfor %}
+            </a>
         </div>
-    </div>
+    {% endfor %}
+</div>
+
+
+</div>
 {% endblock %}
