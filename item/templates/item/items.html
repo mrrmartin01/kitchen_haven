@@ -19,18 +19,20 @@
 
     <p class="font-semibold">Categories</p>
 
-    <ul>
-      {% for category in categories %}
-      <li
-        class="py-2 text-gray-500 px-2 rounded-md{% if category.id == category_id %} bg-gray-200 text-gray-700{% endif %}"
-      >
-        <a
-          href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}"
-          >{{ category.name }}</a
-        >
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="h-64 overflow-auto">
+        <ul>
+          {% for category in categories %}
+          <li
+            class="py-2 text-gray-500 px-2 rounded-md{% if category.id == category_id %} bg-gray-200 text-gray-700{% endif %}"
+          >
+            <a
+              href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}"
+              >{{ category.name }}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
 
     <hr class="my-6" />
 
@@ -53,13 +55,14 @@
       {% for item in items %}
       <div>
         <a href="{% url 'item:detail' item.id %}">
-          <div>
-            <img src="{{ item.image.url }}" class="rounded-t-xl" />
-          </div>
+            <div class="w-full h-64 overflow-hidden">
+                <img src="{{ item.image.url }}" class="w-full h-full object-cover" />
+            </div>
 
-          <div class="p-6 bg-white rounded-b-xl">
-            <h2 class="text-2xl">{{ item.name }}</h2>
-            <p class="text-gray-500">Price: {{ item.price }}</p>
+          <div class="py-3 px-2 flex justify-between items-center bg-gray-100 rounded-b-xl">
+            <h2 class="text-xl">{{ item.name }}</h2>
+            <p class="text-lg">GH₵: {{ item.price }}</p>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white p-2 rounded-lg"><a href="{% url 'item:detail' item.id %}">View</a></button>
           </div>
         </a>
       </div>

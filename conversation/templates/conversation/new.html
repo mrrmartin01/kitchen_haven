@@ -3,25 +3,27 @@
 {% block title %}New Conversation{% endblock %}
 
 {% block content %}
-<h1 class="mb-6 text-3xl">New conversation</h1>
+<div class="w-full md:w-1/2 mx-auto p-6 bg-gray-100 rounded-xl shadow-md">
+    <h1 class="mb-6 text-3xl md:text-4xl text-center font-semibold">New conversation</h1>
 
-<form method="post" action=".">
-    {% csrf_token %}
+    <form method="post" action="." class="w-full">
+        {% csrf_token %}
 
-    <div class="space-y-4">
-        {{ form.as_p }}
-    </div>
-
-    {% if form.errors or form.non_field_errors %}
-        <div class="mb-3 p-6 bg-red-100 rounded-xl">
-            {% for field in form %}
-                {{ field.errors }}
-            {% endfor %}
-
-            {{ form.non_field_errors }}
+        <div class="space-y-4">
+            {{ form.as_p }}
         </div>
-    {% endif %}
 
-    <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Send</button>
-</form>    
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <button class="mt-6 p-2 text-lg bg-yellow-300 hover:bg-yellow-500 rounded-xl text-white w-full md:w-auto font-semibold">Send</button>
+    </form>
+</div>
 {% endblock %}
