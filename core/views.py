@@ -19,17 +19,27 @@ def contact_view(request):
         email = request.POST['email']
         message = request.POST['message']
 
-        # Prepare email
-        subject = f"Contact Form Submission from {name}"
-        message_body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-        from_email = settings.DEFAULT_FROM_EMAIL
-        recipient_list = ['***@mail.com']
+        # Prepare email for the website admin
+        admin_subject = f"Kitchen Comfort Contact Form Submission from {name}"
+        admin_message_body = f"Client Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+        admin_from_email = settings.DEFAULT_FROM_EMAIL
+        admin_recipient_list = [settings.DEFAULT_FROM_EMAIL]
 
-        # Send email
-        send_mail(subject, message_body, from_email, recipient_list)
+        # Send email to the website admin
+        send_mail(admin_subject, admin_message_body, admin_from_email, admin_recipient_list)
+
+        # Prepare email for the user
+        user_subject = f"Hello {name}"
+        user_message_body = f"Kitchen Comfort just received your mail and we want you to know you'll be hearing back from us in a bit.\n\nThank you"
+        user_from_email = settings.DEFAULT_FROM_EMAIL
+        user_recipient_list = [email]
+
+        # Send email to the user
+        send_mail(user_subject, user_message_body, user_from_email, user_recipient_list)
+
 
         # Redirect to a success page or show a success message
-        return redirect('core:contact_success')
+        return render (request, 'core/contact_success.html')
 
     return render(request, 'core/contact.html')
 
