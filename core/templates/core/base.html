@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} {% endblock %}| Kitchen Comfort</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -139,9 +140,16 @@
             <ul class="">
                 <li>
                     <a
-                        href="#"
+                        href="{% url 'item:items' %}"
                         class="text-md text-teal-500 hover:text-teal-700"
-                        >About</a
+                        >Browse</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="{% url 'conversation:inbox' %}"
+                        class="text-md text-teal-500 hover:text-teal-700"
+                        >Inbox</a
                     >
                 </li>
                 <li>
@@ -153,16 +161,9 @@
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="{% url 'core:policy' %}"
                         class="text-md text-teal-500 hover:text-teal-700"
                         >Privacy Policy</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        class="text-md text-teal-500 hover:text-teal-700"
-                        >Terms of Use</a
                     >
                 </li>
             </ul>
